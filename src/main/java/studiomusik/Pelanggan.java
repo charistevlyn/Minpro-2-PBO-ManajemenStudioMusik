@@ -49,4 +49,7 @@ public class Pelanggan {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
+    public String getInfo() {
+        return "Pelanggan: " + nama;
+    }
 }

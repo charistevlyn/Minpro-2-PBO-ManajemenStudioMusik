@@ -15,7 +15,9 @@ public class Main {
     public static void main(String[] args) {
 
         int pilihan;
-
+        
+        tambahDummyData();
+        
         do {
             System.out.println("\n======================================");
             System.out.println("      SISTEM MANAJEMEN STUDIO MUSIK");
@@ -82,6 +84,39 @@ public class Main {
     // MENU STUDIO
     // =========================
 
+    static void tambahDummyData() {
+
+    daftarStudio.add(new Studio(
+        "ST001",
+        "Grace Room",
+        "Band",
+        75000
+    ));
+
+    daftarPelanggan.add(new PelangganUmum(
+        "PL001",
+        "Caleb",
+        "081234567890",
+        "Samarinda"
+    ));
+
+    daftarPelanggan.add(new PelangganMember(
+        "PL002",
+        "Eliana",
+        "082345678901",
+        "Balikpapan",
+        "Gold"
+    ));
+
+    daftarBooking.add(new Booking(
+        "BK001",
+        "PL001",
+        "ST001",
+        "21-09-2026",
+        "14:00",
+        2
+    ));
+}
     static void tambahStudio() {
 
         System.out.println("\n--- TAMBAH DATA STUDIO ---");
@@ -182,27 +217,50 @@ public class Main {
     // =========================
 
     static void tambahPelanggan() {
+    System.out.println("\n--- TAMBAH DATA PELANGGAN ---");
 
-        System.out.println("\n--- TAMBAH DATA PELANGGAN ---");
+    String id = inputTeks("ID Pelanggan: ");
 
-        String id = inputTeks("ID Pelanggan: ");
+    if (cariPelanggan(id) != null) {
+        System.out.println("ID Pelanggan sudah digunakan!");
+        return;
+    }
 
-        if (cariPelanggan(id) != null) {
-            System.out.println("ID Pelanggan sudah digunakan!");
-            return;
-        }
+    String nama = inputTeks("Nama: ");
+    String noTelepon = inputTeks("No. Telepon: ");
+    String alamat = inputTeks("Alamat: ");
 
-        String nama = inputTeks("Nama: ");
-        String noTelepon = inputTeks("No. Telepon: ");
-        String alamat = inputTeks("Alamat: ");
+    System.out.println("\nJenis Pelanggan:");
+    System.out.println("1. Pelanggan Umum");
+    System.out.println("2. Pelanggan Member");
 
-        Pelanggan pelanggan =
-                new Pelanggan(id, nama, noTelepon, alamat);
+    int jenis = inputAngka("Pilih jenis pelanggan: ");
+
+    if (jenis == 1) {
+
+        PelangganUmum pelanggan = new PelangganUmum(
+            id, nama, noTelepon, alamat
+        );
 
         daftarPelanggan.add(pelanggan);
 
-        System.out.println("Data pelanggan berhasil ditambahkan!");
+    } else if (jenis == 2) {
+
+        String jenisMember = inputTeks("Jenis Member: ");
+
+        PelangganMember pelanggan = new PelangganMember(
+            id, nama, noTelepon, alamat, jenisMember
+        );
+
+        daftarPelanggan.add(pelanggan);
+
+    } else {
+        System.out.println("Jenis pelanggan tidak tersedia!");
+        return;
     }
+
+    System.out.println("Data pelanggan berhasil ditambahkan!");
+}
 
     static void lihatPelanggan() {
 
@@ -214,7 +272,6 @@ public class Main {
         }
 
         for (Pelanggan pelanggan : daftarPelanggan) {
-
             System.out.println("----------------------------");
             System.out.println("ID Pelanggan : "
                     + pelanggan.getIdPelanggan());
@@ -224,6 +281,8 @@ public class Main {
                     + pelanggan.getNoTelepon());
             System.out.println("Alamat       : "
                     + pelanggan.getAlamat());
+            System.out.println("Jenis        : " 
+                    + pelanggan.getInfo());
         }
     }
 
