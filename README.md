@@ -2,9 +2,20 @@
 
 ## Deskripsi Program
 Sistem Manajemen Studio Musik merupakan program berbasis bahasa pemrograman Java yang digunakan untuk mengelola data studio musik secara sederhana. Program ini dibuat untuk membantu pengguna dalam mengelola data studio, pelanggan, dan booking studio. Program ini menerapkan operasi CRUD untuk menambah, menampilkan, mengubah, dan menghapus data yang tersimpan.
-Program yang dibuat merupakan Sistem Manajemen Studio Musik yang digunakan untuk mengelola data studio, pelanggan, dan booking studio. Program ini dibuat untuk membantu proses pencatatan data studio yang tersedia, data pelanggan, serta jadwal booking yang dilakukan oleh pelanggan.
-## Hierarki Class
-Pada program ini, inheritance diterapkan dengan menjadikan class Pelanggan sebagai superclass yang memiliki dua subclass, yaitu PelangganUmum dan PelangganMember. Class PelangganUmum digunakan untuk data pelanggan biasa, sedangkan PelangganMember digunakan untuk data pelanggan yang memiliki jenis member tertentu. Hierarki class pada program ini dapat digambarkan dengan Pelanggan berada di bagian atas sebagai superclass, kemudian bercabang menjadi PelangganUmum dan PelangganMember sebagai subclass.
+## Class yang ada di Program ini
+Program ini memiliki beberapa class, yaitu 
+
+1. Main.java sebagai class utama atau entry point yang digunakan untuk menjalankan program, menampilkan menu utama, menerima input pilihan dari pengguna, dan menjalankan proses sesuai dengan menu yang dipilih.
+
+2. Class Studio.java merupakan class entitas yang menyimpan informasi mengenai studio musik, seperti ID studio, nama studio, jenis studio, dan harga sewa per jam. Class ini menerapkan constructor, getter, setter, access modifier, dan encapsulation.
+3. Class Pelanggan.java merupakan class entitas yang digunakan untuk menyimpan data pelanggan, seperti ID pelanggan, nama, nomor telepon, dan alamat. Class ini juga menerapkan constructor, getter, setter, access modifier, dan encapsulation.
+4. Class Booking.java merupakan class entitas yang digunakan untuk menyimpan data pemesanan studio, seperti ID booking, ID pelanggan, ID studio, tanggal booking, jam booking, dan durasi booking. Class ini juga menerapkan constructor, getter, setter, access modifier, dan encapsulation. Data dari masing-masing class tersebut disimpan menggunakan ArrayList sehingga dapat dikelola selama program berjalan.
+
+## Alur Perencanaan Program
+Alur program dimulai ketika program dijalankan melalui class Main.java. Program akan menampilkan menu utama yang berisi beberapa pilihan, yaitu tambah data studio, lihat data studio, ubah data studio, hapus data studio, tambah data pelanggan, lihat data pelanggan, tambah data booking, lihat data booking, dan keluar. Pengguna dapat memilih menu dengan memasukkan angka sesuai dengan pilihan yang tersedia.
+
+Setelah pengguna memilih menu, program menggunakan percabangan untuk menentukan proses yang akan dijalankan. Pada proses pengelolaan data studio, pengguna dapat menambahkan data studio baru, melihat data yang telah tersimpan, mengubah data berdasarkan ID studio, atau menghapus data studio. Pengguna juga dapat menambahkan dan melihat data pelanggan serta menambahkan dan melihat data booking. Program menggunakan perulangan agar menu dapat terus ditampilkan dan digunakan kembali sampai pengguna memilih menu keluar. Selain itu, program juga menggunakan perulangan untuk menampilkan data yang telah tersimpan pada ArrayList.
+
 ## Inheritance
 Penerapan inheritance pada program dilakukan dengan menggunakan extends pada class PelangganUmum dan PelangganMember. Kedua class tersebut mewarisi atribut dan method yang terdapat pada class Pelanggan. Pada PelangganMember juga terdapat atribut tambahan berupa jenisMember karena pelanggan member memiliki informasi tambahan yang tidak dimiliki pelanggan umum. Dengan inheritance ini, saya tidak perlu membuat ulang atribut dasar pelanggan pada setiap class karena sudah dapat diwariskan dari class Pelanggan.
 
@@ -20,6 +31,23 @@ Selain inheritance, program ini juga menerapkan polymorphism melalui method over
    <img width="500" height="150" alt="image" src="https://github.com/user-attachments/assets/45ec2fb5-099a-4e39-87b3-c543218aaf7e" />
    
 Pada kode tersebut, PelangganMember merupakan subclass dari Pelanggan yang mewarisi data dari class induknya. Class ini memiliki atribut tambahan jenisMember untuk menyimpan jenis member pelanggan. super() digunakan untuk memanggil constructor Pelanggan, sedangkan getJenisMember() dan setJenisMember() digunakan untuk mengambil dan mengubah nilai jenisMember
+
+## Encapsulation
+<img width="331" height="111" alt="image" src="https://github.com/user-attachments/assets/a8c39739-fcb7-402b-8796-ea164c6273e7" />
+
+Pada program ini, encapsulation diterapkan dengan membuat atribut pada setiap class menggunakan access modifier private, sehingga data tidak dapat diakses secara langsung dari luar class. Untuk mengakses dan mengubah data tersebut, saya menggunakan method getter dan setter. Contohnya pada class Pelanggan, atribut seperti idPelanggan, nama, noTelepon, dan alamat dibuat private, kemudian disediakan getter untuk mengambil data dan setter untuk mengubah data. Dengan cara ini, data pada class dapat lebih terkontrol dan tidak dapat diubah secara langsung dari luar class.
+
+<img width="299" height="444" alt="image" src="https://github.com/user-attachments/assets/acb664b6-d8cb-4d93-9bc2-ca341f666e06" />
+
+Pada bagian kode ini, encapsulation diterapkan melalui method getter dan setter. Method getNama(), getNoTelepon(), dan getAlamat() digunakan untuk mengambil nilai dari atribut yang bersifat private, sedangkan method setIdPelanggan(), setNama(), setNoTelepon(), dan setAlamat() digunakan untuk mengubah nilai atribut tersebut. Dengan begitu, data pelanggan tidak diakses atau diubah secara langsung dari luar class, tetapi melalui method yang sudah disediakan. Selain itu, method getInfo() digunakan untuk menampilkan informasi pelanggan.
+
+
+## Polymorphism
+<img width="334" height="131" alt="image" src="https://github.com/user-attachments/assets/8c1a50e9-b9db-4c8b-a38c-07444bd0293e" />
+<img width="343" height="96" alt="image" src="https://github.com/user-attachments/assets/a09429a8-fefd-4e2c-a39b-298a66584f84" />
+
+Pada bagian kode tersebut, polymorphism diterapkan melalui method overriding dengan menggunakan @Override. Method getInfo() pada class PelangganMember dibuat ulang dari method yang ada pada class Pelanggan, tetapi isi method disesuaikan dengan kebutuhan pelanggan member. Pada bagian return, program menampilkan nama pelanggan melalui getNama() dan jenis member melalui jenisMember. Jadi, meskipun menggunakan nama method yang sama yaitu getInfo(), hasil yang ditampilkan berbeda dengan getInfo() pada PelangganUmum.
+
 ## Running Program
 
 1. Tampilan Menu Utama
